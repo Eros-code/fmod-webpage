@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" type="text/css" href="examples.css" media="all" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -46,10 +45,16 @@
             <p>Health:</p>
           </div>
           <div class="col">
-            <input type="range" min="0" max="100" value="0" id="health_slide" />
-          </div>
-          <div class="col">
-            <span id="health_val" style="font-weight: bold">0</span>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="100"
+              step="1"
+              id="health_slide"
+              oninput="paramChanged(this.value)"
+            />
+            <output for="health_slide" id="surfaceparameter_out">100</output>
           </div>
         </div>
         <div class="row">
@@ -61,12 +66,12 @@
               type="range"
               min="0"
               max="100"
+              step="1"
               value="0"
               id="intensity_slide"
+              oninput="paramChanged2(this.value)"
             />
-          </div>
-          <div class="col">
-            <span id="intensity_val" style="font-weight: bold">0</span>
+            <output for="intensity_slide" id="surfaceparameter2_out">0</output>
           </div>
         </div>
       </div>
@@ -75,22 +80,6 @@
         <br />
         <output id="display_out2"></output><br />
       </div>
-      <script>
-        var slideCol = document.getElementById("health_slide");
-        var slideSq = document.getElementById("intensity_slide");
-        var y = document.getElementById("health_val");
-        var x = document.getElementById("intensity_val");
-        y.innerHTML = slideCol.value;
-        x.innerHTML = slideSq.value;
-
-        slideCol.oninput = function () {
-          y.innerHTML = this.value;
-        };
-
-        slideSq.oninput = function () {
-          x.innerHTML = this.value;
-        };
-      </script>
     </div>
 
     <script type="text/javascript" src="fmodstudio.js"></script>

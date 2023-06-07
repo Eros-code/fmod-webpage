@@ -1,15 +1,4 @@
 /*==============================================================================
-Simple Event Example
-Copyright (c), Firelight Technologies Pty, Ltd 2012-2023.
-
-This example demonstrates the various ways of playing an event.
-
-#### Explosion Event ####
-This event is played as a one-shot and released immediately after it has been
-created.
-
-#### Looping Ambience Event ####
-A single instance is started or stopped based on user input.
 
 #### Cancel Event ####
 This instance is started and if already playing, restarted.
@@ -36,8 +25,11 @@ var gSystem; // Global 'System' object which has the Studio API functions.
 var gSystemCore; // Global 'SystemCore' object which has the Core API functions.
 // var explosionDescription = {}; // Global Event Description for the explosion event.  This event is played as a one-shot and released immediately after it has been created.
 var eventDescription = {}; // Global Event Instance for the looping ambience event.  A single instance is started or stopped based on user input.
-var cancelInstance = {}; // Global Event Instance for the cancel event.  This instance is started and if already playing, restarted.
-
+// var cancelInstance = {}; // Global Event Instance for the cancel event.  This instance is started and if already playing, restarted.
+var eventInstanceOut = {};
+var gEventInstance = {}; // Global Event Instance for the footstep event.
+var gHealthInstance = 100;
+var gIntensityInstance = 0;
 // Simple error checking function for all FMOD return values.
 function CHECK_RESULT(result) {
   if (result != FMOD.OK) {
@@ -73,20 +65,6 @@ function prerun() {
     );
   }
 }
-
-// Function called when user drags HTML range slider.
-
-// function paramChanged(val) {
-//   document.querySelector("#health_slide").value = val;
-//   if (gEventInstance) {
-//     var result = gEventInstance.setParameterByID(
-//       gSurfaceID,
-//       parseFloat(val),
-//       false
-//     );
-//     CHECK_RESULT(result);
-//   }
-// }
 
 // Called when the Emscripten runtime has initialized
 function main() {
@@ -152,20 +130,39 @@ function main() {
   return FMOD.OK;
 }
 
-// Function called when user presses HTML Play Sound button, with parameter 0, 1 or 2.
-function playEvent(soundid) {
-  if (soundid == 1) {
-    CHECK_RESULT(eventDescription.val.start());
-  } else if (soundid == 2) {
-    CHECK_RESULT(eventDescription.val.stop(FMOD.STUDIO_STOP_IMMEDIATE));
+// Function called when user drags HTML range slider.
+function paramChanged(val) {
+  document.querySelector("#surfaceparameter_out").value = val;
+  if (gEventInstance) {
+    var result = gEventInstance.setParameterByID(
+      gHealthID,
+      parseFloat(val),
+      false
+    );
+    CHECK_RESULT(result);
   }
 }
 
-// function playEvent() {
-//   if (gEventInstance) {
-//     CHECK_RESULT(gEventInstance.start());
-//   }
-// }
+function paramChanged2(val) {
+  document.querySelector("#surfaceparameter2_out").value = val;
+  if (gEventInstance) {
+    var result = gEventInstance.setParameterByID(
+      gIntensityID,
+      parseFloat(val),
+      false
+    );
+    CHECK_RESULT(result);
+  }
+}
+
+// Function called when user presses HTML Play Sound button, with parameter 1 or 2.
+function playEvent(soundid) {
+  if (soundid == 1) {
+    CHECK_RESULT(eventInstanceOut.val.start());
+  } else if (soundid == 2) {
+    CHECK_RESULT(eventInstanceOut.val.stop(FMOD.STUDIO_STOP_IMMEDIATE));
+  }
+}
 
 // Helper function to load a bank by name.
 function loadBank(name) {
@@ -175,26 +172,9 @@ function loadBank(name) {
   );
 }
 
-// Called from main, does some application setup.  In our case we will load some sounds.
-// function initApplication() {
-//   console.log("Loading events\n");
-
-//   loadBank("Master.bank");
-//   loadBank("Master.strings.bank");
-
-//   // Get the Looping Ambience event
-//   var loopingAmbienceDescription = {};
-//   CHECK_RESULT(
-//     gSystem.getEvent("event:GA2 Vas Achilleas", loopingAmbienceDescription)
-//   );
-
-//   CHECK_RESULT(
-//     loopingAmbienceDescription.val.createInstance(loopingAmbienceInstance)
-//   );
+// Called from main, does some application setup.  In our case we will load some sounds and the parameters
 
 function initApplication() {
-  var eventInstanceOut = {};
-
   var guid = FMOD.GUID();
 
   console.log("Loading events\n");
@@ -202,39 +182,52 @@ function initApplication() {
   loadBank("Master.bank");
   loadBank("Master.strings.bank");
 
-  // Get the Car Engine event
   var eventDescription = {};
   CHECK_RESULT(gSystem.getEvent("event:/GA2 Vas Achilleas", eventDescription));
+
+  var HealthparamDesc = {};
+  CHECK_RESULT(
+    eventDescription.val.getParameterDescriptionByName(
+      "Health",
+      HealthparamDesc
+    )
+  );
+  gHealthID = HealthparamDesc.id;
+
+  var IntensityparamDesc = {};
+  CHECK_RESULT(
+    eventDescription.val.getParameterDescriptionByName(
+      "Intensity",
+      IntensityparamDesc
+    )
+  );
+  gIntensityID = IntensityparamDesc.id;
+
+  // Get the game music loop event
   CHECK_RESULT(eventDescription.val.createInstance(eventInstanceOut));
   gEventInstance = eventInstanceOut.val;
 
-  CHECK_RESULT(gEventInstance.setParameterByName("Health", 100.0, false));
-  CHECK_RESULT(gEventInstance.setParameterByName("Intensity", 0.0, false));
-  CHECK_RESULT(gEventInstance.start());
+  // set Health to 100 and intensity to 0 to start with
+  var HealthParameterValue = 100;
+  var IntensityParameterValue = 0.0;
+
+  CHECK_RESULT(
+    gEventInstance.setParameterByName("Health", HealthParameterValue, false)
+  );
+  CHECK_RESULT(
+    gEventInstance.setParameterByName(
+      "Intensity",
+      IntensityParameterValue,
+      false
+    )
+  );
+
+  document.getElementById("playEvent1").disabled = false;
+  document.getElementById("playEvent2").disabled = false;
+  document.getElementById("health_slide").disabled = false;
+  document.getElementById("intensity_slide").disabled = false;
 }
 
-// Get the 4 Second Surge event
-var cancelDescription = {};
-CHECK_RESULT(gSystem.getEvent("event:/UI/Cancel", cancelDescription));
-
-CHECK_RESULT(cancelDescription.val.createInstance(cancelInstance));
-
-// Get the Explosion event
-// CHECK_RESULT(
-//   gSystem.getEvent("event:/Weapons/Explosion", explosionDescription)
-// );
-
-// Start loading explosion sample data and keep it in memory
-// CHECK_RESULT(explosionDescription.val.loadSampleData());
-
-// Once the loading is finished, re-enable the disabled buttons.
-// document.getElementById("playEvent0").disabled = false;
-document.getElementById("playEvent1").disabled = false;
-document.getElementById("playEvent2").disabled = false;
-// document.getElementById("playEvent3").disabled = false;
-
-// Called from main, on an interval that updates at a regular rate (like in a game loop).
-// Prints out information, about the system, and importantly calles System::udpate().
 function updateApplication() {
   var result;
   var cpu = {};
