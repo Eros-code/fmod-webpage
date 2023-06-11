@@ -132,6 +132,7 @@ function main() {
 
 // Function called when user drags HTML range slider.
 function paramChanged(val) {
+  stateChanged();
   document.querySelector("#surfaceparameter_out").value = val;
   if (gEventInstance) {
     var result = gEventInstance.setParameterByID(
@@ -144,6 +145,7 @@ function paramChanged(val) {
 }
 
 function paramChanged2(val) {
+  stateChanged();
   document.querySelector("#surfaceparameter2_out").value = val;
   if (gEventInstance) {
     var result = gEventInstance.setParameterByID(
@@ -152,6 +154,23 @@ function paramChanged2(val) {
       false
     );
     CHECK_RESULT(result);
+  }
+}
+
+function stateChanged() {
+  var intenseVal = document.getElementById("intensity_slide").value;
+  var healthVal = document.getElementById("health_slide").value;
+
+  if ((intenseVal >= 0) & (intenseVal <= 20) & (healthVal > 0)) {
+    document.querySelector("#state_out").value = "Idle";
+  } else if ((intenseVal >= 21) & (intenseVal <= 60) & (healthVal > 0)) {
+    document.querySelector("#state_out").value = "Exploration";
+  } else if ((intenseVal >= 61) & (intenseVal <= 99) & (healthVal > 0)) {
+    document.querySelector("#state_out").value = "Action";
+  } else if ((intenseVal == 100) & (healthVal > 0)) {
+    document.querySelector("#state_out").value = "Win";
+  } else if (healthVal == 0) {
+    document.querySelector("#state_out").value = "Dead";
   }
 }
 
