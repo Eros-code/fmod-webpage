@@ -157,7 +157,9 @@ function paramChanged2(val) {
   }
 }
 
-function stateChanged() {
+// function for initial state when play button pressed:
+
+function playState() {
   var intenseVal = document.getElementById("intensity_slide").value;
   var healthVal = document.getElementById("health_slide").value;
 
@@ -174,12 +176,27 @@ function stateChanged() {
   }
 }
 
+// function to output the state of the music depending on intensity and health.
+
+function stateChanged() {
+  var channelsplaying = {};
+  result = gSystemCore.getChannelsPlaying(channelsplaying, null);
+
+  if (channelsplaying.val == 0) {
+    document.querySelector("#state_out").value = "Stopped / OFF";
+  } else {
+    playState();
+  }
+}
+
 // Function called when user presses HTML Play Sound button, with parameter 1 or 2.
 function playEvent(soundid) {
   if (soundid == 1) {
     CHECK_RESULT(eventInstanceOut.val.start());
+    playState();
   } else if (soundid == 2) {
     CHECK_RESULT(eventInstanceOut.val.stop(FMOD.STUDIO_STOP_IMMEDIATE));
+    document.querySelector("#state_out").value = "Stopped / OFF";
   }
 }
 
