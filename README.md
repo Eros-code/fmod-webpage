@@ -1,5 +1,5 @@
 # fmod-webpage
-This project attempts to embed an fmod project within a html page and allow user interaction to determine the state of a piece of music based on some parameters.
+This project attempts to embed an FMOD project within a html page and allow user interaction to determine the state of a piece of music by adjusting sliders corresponding to their respective parameters. By adjusting these sliders, you can dynamically change the music created for your game in FMOD. This simulates the enhancement of the gameplay experience for your users, making it more immersive and exciting.
 
 # What is FMOD?
 FMOD is a proprietary sound effects engine and authoring tool used for video games and applications developed by Firelight Technologies. It is able to play and mix sounds of diverse formats on many operating systems.
