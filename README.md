@@ -7,7 +7,7 @@ Vasfmod is a user interface created for the use on the website https://www.vas-a
 
 <img width="1439" alt="Screenshot 2023-06-13 at 11 51 55" src="https://github.com/Eros-code/vasfmod/assets/67373491/f262d34d-3d02-466d-b239-2679bff28f8e">
 
-The main files Master.bank and Master.strings.bank found in studio/examples/public/js are created as a result of building your FMOD project - they are the almalgamation of all the music files and sequences. These files are loaded in
+The main files Master.bank and Master.strings.bank found in studio/examples/public/js are created as a result of building your FMOD project - they are the almalgamation of all the music files and sequences. These files are loaded in via the prerun() function in the simple_event.js found under the following directory studio/examples/simple_event.js.
 
 
 It works by calling the fmodstudio.js API for html in the studio/examples/simple_event.js file  which can be accessed here: 
