@@ -8,7 +8,7 @@ Vasfmod is a user interface created for the use on the website https://www.vas-a
 <img width="1439" alt="Screenshot 2023-06-13 at 11 51 55" src="https://github.com/Eros-code/vasfmod/assets/67373491/f262d34d-3d02-466d-b239-2679bff28f8e">
 
 
-It works by calling the fmodstudio.js API for html which can be accessed here: 
+It works by calling the fmodstudio.js API for html in the simple_event.js file  which can be accessed here: 
 
 https://www.fmod.com/download#fmodengine
 
