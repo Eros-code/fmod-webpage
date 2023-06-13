@@ -122,27 +122,6 @@ function main() {
 
   initApplication();
 
-  // Set up iOS/Chrome workaround.  Webaudio is not allowed to start unless screen is touched or button is clicked.
-  function resumeAudio() {
-    if (!gAudioResumed) {
-      console.log("Resetting audio driver based on user input.");
-
-      result = gSystemCore.mixerSuspend();
-      CHECK_RESULT(result);
-      result = gSystemCore.mixerResume();
-      CHECK_RESULT(result);
-
-      gAudioResumed = true;
-    }
-  }
-
-  var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  if (iOS) {
-    window.addEventListener("touchend", resumeAudio, false);
-  } else {
-    document.addEventListener("click", resumeAudio);
-  }
-
   // Set the framerate to 50 frames per second, or 20ms.
   console.log("Start game loop\n");
 
