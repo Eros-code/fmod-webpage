@@ -1,5 +1,5 @@
 # fmod-webpage
-This project attempts to embed an fmod project within a html page.
+This project attempts to embed an fmod project within a html page and allow user interaction to determine the state of a piece of music based on some paremeters.
 
 # Vasfmod
 
@@ -10,7 +10,7 @@ Vasfmod is a user interface created for the use on the website https://www.vas-a
 The main files Master.bank and Master.strings.bank found in studio/examples/public/js are created as a result of building your FMOD project - they are the almalgamation of all the music files and sequences. These files are loaded in via the prerun() function in the simple_event.js found under the following directory studio/examples/simple_event.js.
 
 
-It works by calling the fmodstudio.js API for html in the studio/examples/simple_event.js file  which can be accessed here: 
+It works by calling the fmodstudio.js API for html which can be accessed here: 
 
 https://www.fmod.com/download#fmodengine
 
