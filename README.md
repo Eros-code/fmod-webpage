@@ -1,5 +1,5 @@
 # fmod-webpage
-This project attempts to embed an fmod project within a html page and allow user interaction to determine the state of a piece of music based on some paremeters.
+This project attempts to embed an fmod project within a html page and allow user interaction to determine the state of a piece of music based on some parameters.
 
 # Vasfmod
 
