@@ -1,6 +1,9 @@
 # fmod-webpage
 This project attempts to embed an fmod project within a html page and allow user interaction to determine the state of a piece of music based on some parameters.
 
+# What is FMOD?
+FMOD is a proprietary sound effects engine and authoring tool used for video games and applications developed by Firelight Technologies. It is able to play and mix sounds of diverse formats on many operating systems.
+
 # Vasfmod
 
 Vasfmod is a user interface created for the use on the website <a href = "https://www.vas-achilleas.com"> www.vas-achilleas.com </a>. It allows dynamic changes to be made to music created by Vas Achilleas for a unity game in FMOD, based on the parameters of health and intensity. It is built using range sliders and can be accessed via this website: <a href = "https://eros-code.github.io/vasfmod/studio/examples/fmod.html"> this website </a> as shown below.
@@ -16,8 +19,7 @@ It works by calling the fmodstudio.js API for html which can be accessed here:
 
 <img width="1142" alt="Screenshot 2023-06-13 at 11 49 29" src="https://github.com/Eros-code/vasfmod/assets/67373491/5a2b6867-c347-499b-aab5-7c8bd104aa89">
 
-you will also find several examples with detailed code to help you get started.
+For this project the API files must be placed in the same directory as the simple_event.js file. Furthermore there are some C files which must be included - these can be found under the directory studio/inc.
 
-# What is FMOD?
-FMOD is a proprietary sound effects engine and authoring tool used for video games and applications developed by Firelight Technologies. It is able to play and mix sounds of diverse formats on many operating systems.
+Once you download the API files you will also find several examples with detailed code to help you get started. If you would like to see the examples in your web browser then you can do so by accessing this link <a href = "https://www.fmod.com/assets/html5/studio_api/demo.html"> here </a>.
 
