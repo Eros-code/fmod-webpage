@@ -6,7 +6,7 @@ FMOD is a proprietary sound effects engine and authoring tool used for video gam
 
 # Vasfmod
 
-Vasfmod is a user interface created for the use on the website <a href = "https://www.vas-achilleas.com"> www.vas-achilleas.com </a>. It allows dynamic changes to be made to music created by Vas Achilleas for a unity game in FMOD, based on the parameters of health and intensity. It is built using range sliders and can be accessed via this website: <a href = "https://eros-code.github.io/vasfmod/studio/examples/fmod.html"> this website </a> as shown below.
+Vasfmod is a user interface created for the use on the website <a href = "https://www.vas-achilleas.com"> www.vas-achilleas.com </a>. It allows dynamic changes to be made to music created by Vas Achilleas for a unity game in FMOD, based on the parameters of health and intensity. It is built using range sliders and can be accessed via <a href = "https://eros-code.github.io/vasfmod/studio/examples/fmod.html"> this website </a> as shown below.
 
 <img width="1439" alt="Screenshot 2023-06-13 at 11 51 55" src="https://github.com/Eros-code/vasfmod/assets/67373491/f262d34d-3d02-466d-b239-2679bff28f8e">
 
