@@ -160,7 +160,7 @@ function paramChanged2(val) {
 function changeFontColor() {
   let stateClr = document.getElementById("state_out"); // access the element by id
   let color = stateClr.style.color;
-  if (statClr == "Idle") {
+  if (stateClr == "Idle") {
     color = "#68DCFF";
   } else if (stateClr == "Exploration") {
     color = "#FFF200";
