@@ -157,24 +157,6 @@ function paramChanged2(val) {
   }
 }
 
-function changeFontColor() {
-  let stateClr = document.getElementById("state_out"); // access the element by id
-  let color = stateClr.style.color;
-  if (stateClr == "Idle") {
-    color = "#68DCFF";
-  } else if (stateClr == "Exploration") {
-    color = "#FFF200";
-  } else if (stateClr == "Action") {
-    color = "#FFB300";
-  } else if (stateClr == "Win") {
-    color = "#00FF1D";
-  } else if (stateClr == "Dead") {
-    color = "#FF0000";
-  } else {
-    color = "#FF00FE";
-  }
-}
-
 // function for initial state when play button pressed:
 
 function playState() {
@@ -183,14 +165,19 @@ function playState() {
 
   if ((intenseVal >= 0) & (intenseVal <= 20) & (healthVal > 0)) {
     document.querySelector("#state_out").value = "Idle";
+    document.querySelector("#state_out").style.color = "#68DCFF";
   } else if ((intenseVal >= 21) & (intenseVal <= 60) & (healthVal > 0)) {
     document.querySelector("#state_out").value = "Exploration";
+    document.querySelector("#state_out").style.color = "#FFF200";
   } else if ((intenseVal >= 61) & (intenseVal <= 99) & (healthVal > 0)) {
     document.querySelector("#state_out").value = "Action";
+    document.querySelector("#state_out").style.color = "#FFb300";
   } else if ((intenseVal == 100) & (healthVal > 0)) {
     document.querySelector("#state_out").value = "Win";
+    document.querySelector("#state_out").style.color = "#00FF1D";
   } else if (healthVal == 0) {
     document.querySelector("#state_out").value = "Dead";
+    document.querySelector("#state_out").style.color = "#FF0000";
   }
 }
 
