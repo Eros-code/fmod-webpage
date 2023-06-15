@@ -204,6 +204,7 @@ function playEvent(soundid) {
   } else if (soundid == 2) {
     CHECK_RESULT(eventInstanceOut.val.stop(FMOD.STUDIO_STOP_IMMEDIATE));
     document.querySelector("#state_out").value = "Stopped / OFF";
+    document.querySelector("#state_out").style.color = "#ff00fe";
   }
 }
 
