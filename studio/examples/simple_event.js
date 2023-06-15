@@ -157,6 +157,24 @@ function paramChanged2(val) {
   }
 }
 
+function changeFontColor() {
+  let stateClr = document.getElementById("state_out"); // access the element by id
+  let color = stateClr.style.color;
+  if (statClr == "Idle") {
+    color = "#68DCFF";
+  } else if (stateClr == "Exploration") {
+    color = "#FFF200";
+  } else if (stateClr == "Action") {
+    color = "#FFB300";
+  } else if (stateClr == "Win") {
+    color = "#00FF1D";
+  } else if (stateClr == "Dead") {
+    color = "#FF0000";
+  } else {
+    color = "#FF00FE";
+  }
+}
+
 // function for initial state when play button pressed:
 
 function playState() {
@@ -194,6 +212,7 @@ function playEvent(soundid) {
   if (soundid == 1) {
     CHECK_RESULT(eventInstanceOut.val.start());
     playState();
+    changeFontColor();
   } else if (soundid == 2) {
     CHECK_RESULT(eventInstanceOut.val.stop(FMOD.STUDIO_STOP_IMMEDIATE));
     document.querySelector("#state_out").value = "Stopped / OFF";
