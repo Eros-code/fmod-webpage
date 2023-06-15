@@ -189,6 +189,7 @@ function stateChanged() {
 
   if (channelsplaying.val == 0) {
     document.querySelector("#state_out").value = "Stopped / OFF";
+    document.querySelector("#state_out").style.color = "#ff00fe";
   } else {
     playState();
   }
